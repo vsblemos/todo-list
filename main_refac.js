@@ -1,27 +1,31 @@
 // main variables
 const LOGGED = window.sessionStorage.getItem("logged");
 let iflogged = JSON.parse(LOGGED);
-const LOCALSTORE = localStorage.getItem('taskList');
-let storageConvert = JSON.parse(LOCALSTORE);
+const LOCALSTORE = localStorage.getItem('tasklist');
+
+
 const logout = document.querySelector("#logout")
 const btnAddTask = document.querySelector('.todo-button');
-const taskList = storageConvert
+const taskList = JSON.parse(LOCALSTORE);
 let taskContainer = document.querySelector('#task_list');
 let select = document.querySelector('.filter-todo');
 let task = document.querySelector('.todo-input');
 
 if(iflogged == true){
-
-
-
+    
 // recovery Local Store Data
-recoveryLocalStore(taskList);
 
-function recoveryLocalStore(taskList){
-    let newarray = 0
-    checkIfCompleted(taskList)
+recovery(taskList);
+checkIfCompleted(taskList);
+
+
+function recovery (storageConvert){
+    let store = 0
+    for(i=0;i<storageConvert.length;i++){
+        store = storageConvert[i]
+        addTask(store)
+    }
 }
-
 // Main Function
 
 
@@ -32,7 +36,7 @@ btnAddTask.addEventListener("click", ()=> {
             taskList.push(obj)
             addTask(obj)
             task.value=''
-            localStorage.setItem('taskList',JSON.stringify(taskList))
+            localStorage.setItem('tasklist',JSON.stringify(taskList))
         }
     
         
@@ -85,7 +89,7 @@ function createBtnDel(array){
         taskContainer.removeChild(node)
         let itemPos = taskList.indexOf(array)
         taskList.splice(itemPos,1)
-        localStorage.setItem('taskList',JSON.stringify(taskList))
+        localStorage.setItem('tasklist',JSON.stringify(taskList))
     })
     return btn1
 }
@@ -104,13 +108,14 @@ function createBtnCheck(array){
             nodeChild.classList.remove('completed')
             let itemPos = taskList.indexOf(array)
             taskList[itemPos].completed = false
-        localStorage.setItem('taskList',JSON.stringify(taskList))
+            
         } else{
             nodeChild.classList.add('completed')
             let itemPos = taskList.indexOf(array)
             taskList[itemPos].completed = true
-            localStorage.setItem('taskList',JSON.stringify(taskList))
+            
         }
+        localStorage.setItem('tasklist',JSON.stringify(taskList))
         
     })
     return btn2
@@ -169,19 +174,26 @@ function removeFilter (){
     while(taskContainer.firstElementChild){
         taskContainer.removeChild(taskContainer.lastElementChild)
     }
+    let newarray = 0
+    for(i=0;i<taskList.length;i++){
+        newarray = taskList[i];
+        addTask(newarray)
+
+
     checkIfCompleted(taskList)
     
-}
+}}
 
 
 function checkIfCompleted(taskList){
     let newarray = 0
     for(i=0;i<taskList.length;i++){
     newarray = taskList[i];
-    addTask(newarray)
     if(newarray.completed== true){
         (taskContainer.childNodes[i+1]).firstChild.classList.add('completed')  
-    }}
+    }
+    return taskList
+}
 }     
 
 select.addEventListener('change',function(){
@@ -193,11 +205,11 @@ select.addEventListener('change',function(){
         break;
         case 'all': removeFilter();
         break;
-        default:''
+        default:'filtrar'
         
     }
     })
-} else{
+} else {
     window.location = "login.html"
 }
 
