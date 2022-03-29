@@ -1,3 +1,45 @@
+# ENGLISH
+## How to use
+To access, use as login and password:
+
+login: admin password: admin
+
+This is a case study only, where the objective is learning. User and password were pre-defined in the script that takes care of user validation routines. In a production application, this data will be provided by a database.
+
+## TODO List Project
+This project is the final project of the JavaScript trail, covered throughout 
+FULLTURE's FULL STACK development course.
+
+From a given layout, we were challenged to create a task list using pure JS, without any framework or lib, using just the knowledge acquired 
+along the way.
+
+## What was learned / worked out
+
+The built application involved the following concepts:
+
+1. Creation and assignment of LET and CONST variables;
+2. Use of functions, through functions declarations;
+3. DOM manipulation, using selectors like GetElementById and querySelector;
+4. Array manipulation;
+5. Creation and manipulation of objects;
+6. WebStorage API, such as LocalStorage and SessionStorage;
+7. Access with login and password control;
+8. Completed and uncompleted task filters.
+
+This CRUD (Create, Retrieve, Update and Delete) system is an early version of a control system.
+
+>>CRUDs are used in all types of systems, so this acronym is already widely known in the development environment.
+
+
+
+
+
+
+
+
+
+# PT-BR
+
 ## Como usar o app
 Para acessar, utilize como login e senha:
 
