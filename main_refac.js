@@ -1,4 +1,4 @@
-// main variables
+/ main variables
 const LOGGED = window.sessionStorage.getItem("logged");
 let iflogged = JSON.parse(LOGGED);
 const LOCALSTORE = localStorage.getItem('tasklist');
@@ -6,26 +6,34 @@ const LOCALSTORE = localStorage.getItem('tasklist');
 
 const logout = document.querySelector("#logout")
 const btnAddTask = document.querySelector('.todo-button');
-const taskList = JSON.parse(LOCALSTORE);
+let taskList = JSON.parse(LOCALSTORE);
 let taskContainer = document.querySelector('#task_list');
 let select = document.querySelector('.filter-todo');
 let task = document.querySelector('.todo-input');
+if(taskList == null){
+    taskList = []
+}
 
 if(iflogged == true){
-    
+
 // recovery Local Store Data
 
 recovery(taskList);
-checkIfCompleted(taskList);
+
+if(taskList !== null){
+    checkIfCompleted(taskList);
+}
 
 
 function recovery (storageConvert){
-    let store = 0
-    for(i=0;i<storageConvert.length;i++){
-        store = storageConvert[i]
-        addTask(store)
+        let store = 0
+        for(i=0;i<storageConvert.length;i++){
+            store = storageConvert[i]
+            addTask(store)
+
     }
-}
+    }
+
 // Main Function
 
 
