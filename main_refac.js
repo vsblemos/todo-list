@@ -1,4 +1,4 @@
-/ main variables
+// main variables
 const LOGGED = window.sessionStorage.getItem("logged");
 let iflogged = JSON.parse(LOGGED);
 const LOCALSTORE = localStorage.getItem('tasklist');
