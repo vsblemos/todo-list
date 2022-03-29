@@ -17,4 +17,4 @@ BTN_LOGIN.addEventListener("click",(evt)=>{
         window.sessionStorage.setItem("logged", false);
         alert("Usuário ou Senha Inválidos");
     }
-})
+}) 
